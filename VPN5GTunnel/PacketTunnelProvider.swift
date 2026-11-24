@@ -34,14 +34,28 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
         do {
             // sing-box v1.11.8: Setup takes ONE LibboxSetupOptions object
             // (base/working/temp paths), not four separate arguments.
+            // NOTE: the gobind header declares these as BOOL/object +
+            // NSError**, but Swift (Xcode 26) imports them WITHOUT the
+            // throws conversion — the error is a real second/third
+            // parameter. Observed in CI (run 45337334451) even with the
+            // fully annotated header, so pass it explicitly; do NOT
+            // rewrite these calls as `try LibboxSetup(...)`.
             let setupOptions = LibboxSetupOptions()
             setupOptions.basePath = basePath
             setupOptions.workingPath = basePath
             setupOptions.tempPath = NSTemporaryDirectory()
             setupOptions.isTVOS = false
-            try LibboxSetup(setupOptions)
+            var setupError: NSError?
+            guard LibboxSetup(setupOptions, &setupError) else {
+                throw setupError ?? NSError(domain: "vpn5g.tunnel", code: 12,
+                                            userInfo: [NSLocalizedDescriptionKey: "Libbox setup failed"])
+            }
 
-            let service = try LibboxNewService(configJSON, platformInterface)
+            var serviceError: NSError?
+            guard let service = LibboxNewService(configJSON, platformInterface, &serviceError) else {
+                throw serviceError ?? NSError(domain: "vpn5g.tunnel", code: 13,
+                                              userInfo: [NSLocalizedDescriptionKey: "Could not create libbox service"])
+            }
             self.boxService = service
             try service.start()
         } catch {
