@@ -15,13 +15,20 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
     private var trafficPoller: SingBoxTrafficPoller?
 
     override func startTunnel(options: [String: NSObject]?, completionHandler: @escaping (Error?) -> Void) {
-        guard let configJSON = protocolConfiguration.providerConfiguration?["serverJSON"] as? String,
+        // NOTE: do NOT chain `protocolConfiguration.providerConfiguration?[...]`
+        // inline — Swift (Xcode 26) fails to type-check that chain and
+        // reports only "failed to produce diagnostic for expression"
+        // (CI runs 45336311652 / 45337334451 / 45338185247). Unwrap each
+        // level first, then subscript the plain dictionary.
+        guard let tunnelProtocol = protocolConfiguration as? NETunnelProviderProtocol,
+              let providerConfiguration = tunnelProtocol.providerConfiguration,
+              let configJSON = providerConfiguration["serverJSON"] as? String,
               !configJSON.isEmpty else {
             completionHandler(NSError(domain: "vpn5g.tunnel", code: 10,
                                       userInfo: [NSLocalizedDescriptionKey: "Missing sing-box config"]))
             return
         }
-        let sessionLimitMinutes = (protocolConfiguration.providerConfiguration?["sessionLimitMinutes"] as? NSNumber)?.intValue ?? 30
+        let sessionLimitMinutes = (providerConfiguration["sessionLimitMinutes"] as? NSNumber)?.intValue ?? 30
 
         let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)
         let basePath = groupURL?.appendingPathComponent("libbox").path ?? NSTemporaryDirectory()
