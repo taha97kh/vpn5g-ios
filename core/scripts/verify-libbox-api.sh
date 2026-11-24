@@ -9,7 +9,10 @@
 set -eu
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-HEADER="$(find "$ROOT/core/Libbox.xcframework" -name 'Libbox.h' | head -n 1)"
+# سربرگ واقعی نمادها `Libbox.objc.h` است؛ `Libbox.h` فقط یک سربرگ چتری
+# (umbrella) است و هیچ نمادی ندارد — بررسی `Libbox.h` همیشه همه‌چیز را
+# MISS گزارش می‌کرد.
+HEADER="$(find "$ROOT/core/Libbox.xcframework" -name 'Libbox.objc.h' | head -n 1)"
 if [ -z "$HEADER" ]; then
     HEADER="$(find "$ROOT/core/Libbox.xcframework" -name '*.h' | head -n 1)"
 fi
@@ -32,7 +35,7 @@ LibboxStringIterator
 LibboxNetworkInterfaceIterator
 LibboxNetworkInterface
 LibboxWIFIState
-LibboxConnectionOwner
+findConnectionOwner
 LibboxNotification
 LibboxInterfaceUpdateListener
 openTun

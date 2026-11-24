@@ -23,8 +23,10 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
     func autoDetectInterfaceControl(_ fd: Int32) throws {}
     func useProcFS() -> Bool { false }
 
+    // در sing-box v1.11.8 این متد UID (int32) برمی‌گرداند، نه یک شیء
+    // مالک اتصال؛ نوع LibboxConnectionOwner در این نسخه وجود ندارد.
     func findConnectionOwner(_ ipProtocol: Int32, _ sourceAddress: String?, _ sourcePort: Int32,
-                             _ destinationAddress: String?, _ destinationPort: Int32) throws -> LibboxConnectionOwner? {
+                             _ destinationAddress: String?, _ destinationPort: Int32) throws -> Int32 {
         throw NSError(domain: "vpn5g.libbox", code: 1,
                       userInfo: [NSLocalizedDescriptionKey: "FindConnectionOwner not implemented"])
     }
