@@ -1,4 +1,4 @@
-module github.com/VPN5G/vpn5g-ios/core
+module github.com/taha97kh/vpn5g-ios/core
 
 go 1.23
 
