@@ -26,13 +26,21 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
         let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppConstants.appGroupID)
         let basePath = groupURL?.appendingPathComponent("libbox").path ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: basePath, withIntermediateDirectories: true)
-        LibboxSetup(basePath, basePath, NSTemporaryDirectory(), false)
 
         let platformInterface = LibboxPlatformInterface()
         platformInterface.provider = self
         self.platformInterface = platformInterface
 
         do {
+            // sing-box v1.11.8: Setup takes ONE LibboxSetupOptions object
+            // (base/working/temp paths), not four separate arguments.
+            let setupOptions = LibboxSetupOptions()
+            setupOptions.basePath = basePath
+            setupOptions.workingPath = basePath
+            setupOptions.tempPath = NSTemporaryDirectory()
+            setupOptions.isTVOS = false
+            try LibboxSetup(setupOptions)
+
             let service = try LibboxNewService(configJSON, platformInterface)
             self.boxService = service
             try service.start()

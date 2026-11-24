@@ -1,12 +1,24 @@
+import Darwin
 import Foundation
 import NetworkExtension
 import Libbox
 
 /// پل میان sing-box (libbox) و NetworkExtension.
-/// نکته‌ی مهم: نام دقیق متدهای پروتکل `LibboxPlatformInterfaceProtocol` و
-/// توابع `LibboxSetup` / `LibboxNewService` باید در اولین بیلد مک با سربرگ
-/// تولیدشده‌ی `Libbox-Swift.h` تطبیق داده شود؛ اسکریپت
-/// `core/scripts/verify-libbox-api.sh` همین تطبیق را خودکار انجام می‌دهد.
+/// نام متدها در سوئیفت با سربرگ Objective-C تفاوت دارد: واردکننده‌ی
+/// سوئیفت نام‌های قدیمی را به‌صورت خودکار تغییر می‌دهد (قانون‌های Swift 3):
+/// `usePlatformAutoDetectInterfaceControl` ← `usePlatformAutoDetectControl`
+/// `autoDetectInterfaceControl` ← `autoDetectControl`
+/// `sendNotification` ← `send`
+/// `packageNameByUid` ← `packageName(byUid:error:)` (بدون throws، چون
+/// مقدار برگشتی nonnull است و خطا به‌صورت NSErrorPointer می‌آید)
+/// `uidByPackageName` ← `uid(byPackageName:ret0_:)`
+/// `findConnectionOwner` و `openTun` و `uidByPackageName` مقدار برگشتی‌شان
+/// را با پارامتر خروجی `ret0_` برمی‌گردانند، نه با return.
+/// `getInterfaces` با وجود `_Nullable` در سربرگ، در سوئیفت non-optional
+/// است (nil یعنی خطا) — پس `throws -> Protocol` بدون `?`.
+/// مرجع: سربرگ تولیدشده‌ی `Libbox.objc.h` (sing-box v1.11.8)؛ با
+/// `gobind -lang=objc` روی همین نسخه بازتولید شد و نام‌ها با گزارش
+/// خطای CI ران 45311987161 تطبیق داده شد.
 /// اگر سربرگ متد بیشتری از این پروتکل داشت، برای آن یک پیاده‌سازی خالی
 /// (false/nil) اضافه کنید تا تطبیق پروتکل کامل شود.
 final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
@@ -19,16 +31,30 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
     // MARK: - Interface control / monitoring
     // هیچ‌کدام را پلتفرم تامین نمی‌کند؛ sing-box از پیاده‌سازی داخلی Go
     // استفاده می‌کند.
-    func usePlatformAutoDetectInterfaceControl() -> Bool { false }
-    func autoDetectInterfaceControl(_ fd: Int32) throws {}
+    func usePlatformAutoDetectControl() -> Bool { false }
+    func autoDetectControl(_ fd: Int32) throws {}
     func useProcFS() -> Bool { false }
 
-    // در sing-box v1.11.8 این متد UID (int32) برمی‌گرداند، نه یک شیء
-    // مالک اتصال؛ نوع LibboxConnectionOwner در این نسخه وجود ندارد.
-    func findConnectionOwner(_ ipProtocol: Int32, _ sourceAddress: String?, _ sourcePort: Int32,
-                             _ destinationAddress: String?, _ destinationPort: Int32) throws -> Int32 {
+    // MARK: - Logging (پروتکل می‌خواهد؛ در افزونه فقط نادیده گرفته می‌شود)
+    func writeLog(_ message: String?) {}
+
+    // در sing-box v1.11.8 این متد UID (int32) را با پارامتر خروجی ret0_
+    // برمی‌گرداند، نه با return و نه به‌صورت یک شیء مالک اتصال؛ نوع
+    // LibboxConnectionOwner در این نسخه وجود ندارد.
+    func findConnectionOwner(_ ipProtocol: Int32, sourceAddress: String?, sourcePort: Int32,
+                             destinationAddress: String?, destinationPort: Int32,
+                             ret0_ ret: UnsafeMutablePointer<Int32>?) throws {
         throw NSError(domain: "vpn5g.libbox", code: 1,
                       userInfo: [NSLocalizedDescriptionKey: "FindConnectionOwner not implemented"])
+    }
+
+    // فقط اندروید از این دو استفاده می‌کند؛ در iOS هیچ‌وقت صدا زده نمی‌شوند.
+    // packageNameByUid در سوئیفت throws نیست: مقدار برگشتی nonnull است و
+    // خطا به‌صورت NSErrorPointer (پارامتر error) می‌آید.
+    func packageName(byUid uid: Int32, error: NSErrorPointer) -> String { "" }
+    func uid(byPackageName packageName: String?, ret0_ ret: UnsafeMutablePointer<Int32>?) throws {
+        throw NSError(domain: "vpn5g.libbox", code: 1,
+                      userInfo: [NSLocalizedDescriptionKey: "UIDByPackageName not implemented"])
     }
 
     func startDefaultInterfaceMonitor(_ listener: LibboxInterfaceUpdateListenerProtocol?) throws {
@@ -37,7 +63,7 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
     }
     func closeDefaultInterfaceMonitor(_ listener: LibboxInterfaceUpdateListenerProtocol?) throws {}
 
-    func getInterfaces() throws -> LibboxNetworkInterfaceIteratorProtocol? {
+    func getInterfaces() throws -> LibboxNetworkInterfaceIteratorProtocol {
         // فهرست خالی؛ sing-box مسیر پیش‌فرض را خودش پیدا می‌کند.
         EmptyNetworkInterfaceIterator()
     }
@@ -52,7 +78,7 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
     func clearDNSCache() {}
 
     // MARK: - Notifications (اعلان‌های سیستم در افزونه استفاده نمی‌شود)
-    func sendNotification(_ notification: LibboxNotification?) throws {}
+    func send(_ notification: LibboxNotification?) throws {}
     func cancelNotification(_ identifier: String?, _ typeID: Int32) throws {}
 
     // MARK: - OpenTun
@@ -69,17 +95,19 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
         let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: "127.0.0.1")
         if options.getAutoRoute() {
             settings.mtu = NSNumber(value: options.getMTU())
-            var dnsError: NSError?
-            if let dnsServer = options.getDNSServerAddress(&dnsError) {
-                settings.dnsSettings = NEDNSSettings(servers: [dnsServer])
+            // GetDNSServerAddress در سوئیفت throws است و یک LibboxStringBox
+            // برمی‌گرداند (نه String و نه NSErrorPointer)؛ مقدار واقعی در
+            // .value است. اگر آدرسی نباشد، DNS تنظیم نمی‌شود.
+            if let dnsServerBox = try? options.getDNSServerAddress() {
+                settings.dnsSettings = NEDNSSettings(servers: [dnsServerBox.value])
             }
             var addresses: [String] = []
             var masks: [String] = []
             if let iterator = options.getInet4Address() {
                 while iterator.hasNext() {
                     if let prefix = iterator.next() {
-                        addresses.append(prefix.address() ?? "")
-                        masks.append(prefix.prefix() ?? "")
+                        addresses.append(prefix.address())
+                        masks.append(prefix.mask())
                     }
                 }
             }
@@ -90,7 +118,7 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
         }
         if options.isHTTPProxyEnabled() {
             let proxy = NEProxySettings()
-            proxy.httpServer = NEProxyServer(address: options.getHTTPProxyServer() ?? "",
+            proxy.httpServer = NEProxyServer(address: options.getHTTPProxyServer(),
                                              port: Int(options.getHTTPProxyServerPort()))
             proxy.httpsServer = proxy.httpServer
             proxy.autoProxyConfigurationEnabled = false
@@ -147,7 +175,8 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
 
 final class EmptyStringIterator: NSObject, LibboxStringIteratorProtocol {
     func hasNext() -> Bool { false }
-    func next() -> String? { nil }
+    func len() -> Int32 { 0 }
+    func next() -> String { "" }
 }
 
 final class EmptyNetworkInterfaceIterator: NSObject, LibboxNetworkInterfaceIteratorProtocol {

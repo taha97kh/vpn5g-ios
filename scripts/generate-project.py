@@ -22,7 +22,7 @@ def uid(key: str) -> str:
 # (relative path, build phase: sources | resources | none, target: app | tunnel | both)
 APP_FILES = [
     ("VPN5G/VPN5GApp.swift", "sources", "app"),
-    ("VPN5G/Config/AppConstants.swift", "sources", "app"),
+    ("VPN5G/Config/AppConstants.swift", "sources", "both"),
     ("VPN5G/Config/SupabaseConfig.swift", "sources", "app"),
     ("VPN5G/Models/AppConfig.swift", "sources", "app"),
     ("VPN5G/Models/ServerConfig.swift", "sources", "app"),
@@ -112,6 +112,14 @@ def main() -> int:
         filerefs[path] = reg("fileref", path)
         if phase != "none":
             buildfiles[path] = reg("buildfile", path)
+    # Files shared with the tunnel target ("both") get a second PBXBuildFile
+    # (same fileRef, distinct id) — exactly what Xcode creates when a file
+    # is added to a second target. One PBXBuildFile cannot be listed in two
+    # build phases, so the tunnel phase uses this second entry.
+    tun_buildfiles = {}
+    for path, phase, target in APP_FILES:
+        if phase != "none" and target == "both":
+            tun_buildfiles[path] = reg("buildfile", path + "|tunnel")
     fw_refs = {}
     fw_build = {}
     for name, _ in FRAMEWORKS:
@@ -143,6 +151,8 @@ def main() -> int:
         if phase == "none":
             continue
         out.append(f"\t\t{buildfiles[path]} /* {os.path.basename(path)} in {'Sources' if phase == 'sources' else 'Resources'} */ = {{isa = PBXBuildFile; fileRef = {filerefs[path]} /* {os.path.basename(path)} */; }};\n")
+    for path, bf in tun_buildfiles.items():
+        out.append(f"\t\t{bf} /* {os.path.basename(path)} in Sources */ = {{isa = PBXBuildFile; fileRef = {filerefs[path]} /* {os.path.basename(path)} */; }};\n")
     for name, _ in FRAMEWORKS:
         out.append(f"\t\t{fw_build[name]} /* {name} in Frameworks */ = {{isa = PBXBuildFile; fileRef = {fw_refs[name]} /* {name} */; }};\n")
 
@@ -224,14 +234,17 @@ def main() -> int:
                f"\t\t\tprojectRoot = \"\";\n\t\t\ttargets = (\n\t\t\t\t{app_target} /* VPN5G */,\n\t\t\t\t{tunnel_target} /* VPN5GTunnel */,\n\t\t\t);\n\t\t}};\n")
 
     # PBXResourcesBuildPhase / PBXSourcesBuildPhase / PBXCopyFilesBuildPhase
-    def files_list(paths, phase_name):
-        return ",\n".join(f"\t\t\t\t{buildfiles[p]} /* {os.path.basename(p)} in {phase_name} */" for p in paths)
+    def files_list(paths, phase_name, bfmap=None):
+        bfmap = bfmap if bfmap is not None else buildfiles
+        return ",\n".join(f"\t\t\t\t{bfmap[p]} /* {os.path.basename(p)} in {phase_name} */" for p in paths)
 
     app_src = [p for p, ph, _ in APP_FILES if ph == "sources"]
     app_res = [p for p, ph, _ in APP_FILES if ph == "resources"]
-    tun_src = [p for p, ph, _ in TUNNEL_FILES if ph == "sources"]
+    tun_src = [p for p, ph, _ in TUNNEL_FILES if ph == "sources"] + \
+              [p for p, ph, t in APP_FILES if ph == "sources" and t == "both"]
+    tun_bfmap = {**buildfiles, **tun_buildfiles}
     out.append(f"\t\t{app_sources} /* Sources */ = {{isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (\n{files_list(app_src, 'Sources')},\n\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};\n")
-    out.append(f"\t\t{tun_sources} /* Sources */ = {{isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (\n{files_list(tun_src, 'Sources')},\n\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};\n")
+    out.append(f"\t\t{tun_sources} /* Sources */ = {{isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (\n{files_list(tun_src, 'Sources', tun_bfmap)},\n\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};\n")
     out.append(f"\t\t{app_resources} /* Resources */ = {{isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (\n{files_list(app_res, 'Resources')},\n\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};\n")
     out.append(f"\t\t{tun_resources} /* Resources */ = {{isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (\n\t\t\t); runOnlyForDeploymentPostprocessing = 0; }};\n")
     out.append(f"\t\t{app_embed} /* Embed App Extensions */ = {{isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = \"\"; dstSubfolderSpec = 13; files = (\n\t\t\t\t{reg('embedfile', 'tunnel')} /* VPN5GTunnel.appex in Embed App Extensions */,\n\t\t\t); name = \"Embed App Extensions\"; runOnlyForDeploymentPostprocessing = 0; }};\n")

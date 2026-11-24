@@ -26,6 +26,7 @@ echo "Header: $HEADER"
 # نمادها به شکل Objective-C (بدون پسوند Protocol سوئیفت).
 SYMBOLS="
 LibboxSetup
+LibboxSetupOptions
 LibboxNewService
 LibboxBoxService
 LibboxPlatformInterface
@@ -36,6 +37,9 @@ LibboxNetworkInterfaceIterator
 LibboxNetworkInterface
 LibboxWIFIState
 findConnectionOwner
+packageNameByUid
+uidByPackageName
+writeLog
 LibboxNotification
 LibboxInterfaceUpdateListener
 openTun

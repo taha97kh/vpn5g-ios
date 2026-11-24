@@ -32,6 +32,7 @@
 		274B7D348F16D36C0BBD405B /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F145DACD910215E7137A39 /* PacketTunnelProvider.swift */; };
 		7A562A9DBA9A1AFE75101518 /* LibboxPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABEF2C134F652B72851AC1 /* LibboxPlatformInterface.swift */; };
 		B52A467E1D57F89633F206D9 /* SingBoxTrafficPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109353ECB351AA5AE3746A /* SingBoxTrafficPoller.swift */; };
+		160B50CDD1ACF567A83A9AF0 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA59B211085FDDD9236C7A /* AppConstants.swift */; };
 		ACE7EFD12B02CA8269B12DA7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55023C050E77AF9D158E0DDD /* NetworkExtension.framework */; };
 		994CBA380161D4A61D67F218 /* Libbox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DAB373F845DCD0E6301AE5 /* Libbox.xcframework */; };
 		2203F231022D7E1958DF7560 /* VPN5GApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/VPN5GApp.swift; sourceTree = "<group>"; };
@@ -282,6 +283,7 @@
 				274B7D348F16D36C0BBD405B /* PacketTunnelProvider.swift in Sources */,
 				7A562A9DBA9A1AFE75101518 /* LibboxPlatformInterface.swift in Sources */,
 				B52A467E1D57F89633F206D9 /* SingBoxTrafficPoller.swift in Sources */,
+				160B50CDD1ACF567A83A9AF0 /* AppConstants.swift in Sources */,
 			); runOnlyForDeploymentPostprocessing = 0; };
 		4C29BBC16528FEA9E858725B /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
 				A46444AAAE3E4A3DD8E61D82 /* Assets.xcassets in Resources */,
