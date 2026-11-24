@@ -41,19 +41,14 @@ jobs:
       - name: Verify libbox API surface
         run: ./core/scripts/verify-libbox-api.sh
 
-      # بدون فایل scheme در مخزن، با -target ساخته می‌شود نه -scheme.
+      # با scheme مشترک (xcshareddata/xcschemes/VPN5G.xcscheme) ساخته
+      # می‌شود؛ Xcode 26 با -derivedDataPath حتماً -scheme می‌خواهد و
+      # -target را قبول نمی‌کند. بیلد VPN5G افزونه‌ی VPN5GTunnel را هم
+      # از راه وابستگی + Embed App Extensions خودش می‌سازد.
       - name: Build app (unsigned, Release)
         run: |
           xcodebuild -project vpn5g-ios.xcodeproj \
-            -target VPN5G \
-            -configuration Release \
-            -destination "generic/platform=iOS" \
-            -derivedDataPath build/DerivedData \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
-          xcodebuild -project vpn5g-ios.xcodeproj \
-            -target VPN5GTunnel \
+            -scheme VPN5G \
             -configuration Release \
             -destination "generic/platform=iOS" \
             -derivedDataPath build/DerivedData \
