@@ -23,6 +23,14 @@ if [ -z "$HEADER" ]; then
 fi
 echo "Header: $HEADER"
 
+# Ground truth for the Swift import: the exact declarations decide whether
+# Swift sees LibboxSetup/LibboxNewService as `throws` (annotated NSError**)
+# or as multi-argument calls. Print them so a future failure can be
+# diagnosed from the log alone (CI run 45336311652 failed exactly here).
+echo "--- LibboxSetup / LibboxNewService declarations ---"
+grep -E "LibboxSetup\(|LibboxNewService\(" "$HEADER" || true
+echo "--- end declarations ---"
+
 # نمادها به شکل Objective-C (بدون پسوند Protocol سوئیفت).
 SYMBOLS="
 LibboxSetup

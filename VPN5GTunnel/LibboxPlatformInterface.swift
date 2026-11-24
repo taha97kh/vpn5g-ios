@@ -150,20 +150,21 @@ final class LibboxPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol {
                       userInfo: [NSLocalizedDescriptionKey: "Could not obtain tunnel file descriptor"])
     }
 
-    /// جست‌وجوی سوکت کنترل utun در میان توصیف‌گرهای باز
-    /// (AF_SYSTEM با sc_id == 2 یعنی utun). روش مستند برای iOS 15 به بعد.
+    /// جست‌وجوی سوکت کنترل utun در میان توصیف‌گرهای باز.
+    /// sockaddr_ctl در ماژول Darwin آی‌او‌اس به سوئیفت نمی‌رسد
+    /// (sys/kern_control.h آن‌جا نیست)، پس فقط خانواده‌ی آدرس را با یک
+    /// sockaddr ساده می‌خوانیم: AF_SYSTEM یعنی سوکت کنترلی، و در پروسه‌ی
+    /// افزونه‌ی تونل تنها سوکت AF_SYSTEM همان utun است. توصیف‌گر packetFlow
+    /// اول امتحان می‌شود؛ این فقط جایگزین است.
     private func findTunnelFileDescriptor() -> Int32? {
         for fd in Int32(0)..<Int32(1024) {
-            var addr = sockaddr_ctl()
-            var len = socklen_t(MemoryLayout<sockaddr_ctl>.size)
+            var addr = sockaddr()
+            var len = socklen_t(MemoryLayout<sockaddr>.size)
             let result = withUnsafeMutablePointer(to: &addr) {
-                $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                    getpeername(fd, $0, &len)
-                }
+                getpeername(fd, $0, &len)
             }
             if result == 0,
-               addr.sc_family == sa_family_t(AF_SYSTEM),
-               addr.sc_id == 2 {
+               addr.sa_family == sa_family_t(AF_SYSTEM) {
                 return fd
             }
         }

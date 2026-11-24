@@ -14,8 +14,14 @@ echo "== Go version =="
 go version
 
 if ! command -v gomobile >/dev/null 2>&1; then
-    echo "== Installing SagerNet gomobile fork =="
-    go install github.com/sagernet/gomobile/cmd/gomobile@latest
+    echo "== Installing SagerNet gomobile fork (PINNED v0.1.13) =="
+    # Pinned, not @latest: the generated header's nullability annotations
+    # decide whether Swift imports LibboxSetup/LibboxNewService as `throws`
+    # (annotated NSError**) or as multi-argument calls. @latest drifted
+    # and broke the Swift build (CI run 45336311652: "missing argument
+    # for parameter #2/#3"). v0.1.13 is the version the Swift code was
+    # verified against (local gobind, same module version).
+    go install github.com/sagernet/gomobile/cmd/gomobile@v0.1.13
     gomobile init
 fi
 
