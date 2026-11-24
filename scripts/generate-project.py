@@ -195,7 +195,7 @@ def main() -> int:
     out.append(f"\t\t{app_group} /* VPN5G */ = {{\n\t\t\tisa = PBXGroup;\n\t\t\tchildren = (\n"
                f"\t\t\t\t{config_group} /* Config */,\n\t\t\t\t{models_group} /* Models */,\n\t\t\t\t{services_group} /* Services */,\n\t\t\t\t{views_group} /* Views */,\n\t\t\t\t{resources_group} /* Resources */,\n"
                + "".join(f"\t\t\t\t{filerefs[p]} /* {os.path.basename(p)} */,\n" for p in app_top)
-               + "\t\t\t);\n\t\t\tpath = VPN5G;\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n")
+               + "\t\t\t);\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n")
     out.append(subgroup(tunnel_group, "VPN5GTunnel", tun_paths))
     out.append(f"\t\t{frameworks_group} /* Frameworks */ = {{\n\t\t\tisa = PBXGroup;\n\t\t\tchildren = (\n\t\t\t\t{fw_refs['NetworkExtension.framework']} /* NetworkExtension.framework */,\n\t\t\t\t{fw_refs['Libbox.xcframework']} /* Libbox.xcframework */,\n\t\t\t);\n\t\t\tname = Frameworks;\n\t\t\tsourceTree = \"<group>\";\n\t\t}};\n")
     out.append(f"\t\t{products_group} /* Products */ = {{\n\t\t\tisa = PBXGroup;\n\t\t\tchildren = (\n\t\t\t\t{app_product} /* VPN5G.app */,\n\t\t\t\t{tunnel_product} /* VPN5GTunnel.appex */,\n\t\t\t);\n\t\t\tname = Products;\n\t\t\tsourceTree = \"<group>\";\n\t\t}};\n")

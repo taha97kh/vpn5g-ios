@@ -147,7 +147,6 @@
 				A839ADCE26210478B9CC2AD3 /* Info.plist */,
 				14E5314BE05FE99C1126D16E /* VPN5G.entitlements */,
 			);
-			path = VPN5G;
 			sourceTree = "<group>";
 		};
 		478FFD2C4B2AB709DCE3C598 /* VPN5GTunnel */ = {
