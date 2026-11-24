@@ -52,7 +52,10 @@ final class SupabaseAuth: ObservableObject {
         session = nil
         email = nil
         deleteKeychain()
-        SubscriptionStore.shared.clearLocal()
+        // SubscriptionStore is @MainActor; signOut is synchronous, so the
+        // clear runs as a main-actor task (the .authChanged post below
+        // triggers a server refresh anyway).
+        Task { @MainActor in SubscriptionStore.shared.clearLocal() }
         NotificationCenter.default.post(name: .authChanged, object: nil)
     }
 
@@ -130,8 +133,8 @@ final class SupabaseAuth: ObservableObject {
 
     @discardableResult
     func registerAccount(email: String, ip: String) async -> Bool {
-        let (data, status) = try? await rpc(name: "register_account",
-                                             params: ["p_email": email, "p_ip": ip]) ?? (Data(), 0)
+        guard let (data, status) = try? await rpc(name: "register_account",
+                                                   params: ["p_email": email, "p_ip": ip]) else { return false }
         guard status == 200 else { return false }
         return (try? JSONDecoder().decode(Bool.self, from: data)) ?? false
     }
@@ -140,7 +143,7 @@ final class SupabaseAuth: ObservableObject {
     @discardableResult
     func linkOwnUserID() async -> Bool {
         guard session != nil else { return false }
-        let (data, status) = try? await rpc(name: "set_own_user_id", params: [:], authed: true) ?? (Data(), 0)
+        guard let (data, status) = try? await rpc(name: "set_own_user_id", params: [:], authed: true) else { return false }
         guard status == 200 else { return false }
         return (try? JSONDecoder().decode(Bool.self, from: data)) ?? false
     }

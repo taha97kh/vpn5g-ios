@@ -102,8 +102,9 @@ final class TunnelManager: ObservableObject {
         manager.localizedDescription = "TAHA VPN 5G"
         manager.isEnabled = true
         do {
-            try manager.saveToPreferences()
-            try manager.loadFromPreferences()
+            // Xcode 26 SDK: these are async throws now.
+            try await manager.saveToPreferences()
+            try await manager.loadFromPreferences()
         } catch {
             lastError = NSLocalizedString("error_generic", comment: "")
             return
