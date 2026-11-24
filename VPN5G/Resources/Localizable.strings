@@ -1,0 +1,99 @@
+/* TAHA VPN 5G — همه‌ی متن‌های کاربر به فارسی است. */
+"app_name" = "TAHA VPN 5G";
+"tab_home" = "خانه";
+"tab_premium" = "ویژه";
+"tab_locations" = "تمام مکان‌ها";
+"tab_profile" = "من";
+
+"home_connect" = "اتصال";
+"home_disconnect" = "قطع اتصال";
+"home_connecting" = "در حال اتصال…";
+"home_connected" = "متصل است";
+"home_disconnected" = "قطع است";
+"home_download" = "دانلود";
+"home_upload" = "آپلود";
+"home_recommended" = "توصیه‌شده";
+"home_free" = "رایگان";
+"home_vip" = "ویژه";
+"home_update_servers" = "بروزرسانی سرورها";
+"home_no_server" = "سروری در دسترس نیست — دوباره تلاش کنید";
+
+"premium_title" = "ویژه";
+"premium_subtitle" = "با اشتراک ویژه به همه‌ی کشورها و سریع‌ترین سرورها دسترسی دارید؛ بدون محدودیت زمانی.";
+"premium_register_code" = "ثبت کد اشتراک خریداری‌شده";
+"premium_enter_code" = "کد اشتراک را وارد کنید";
+"premium_activate" = "فعال‌سازی";
+"premium_status" = "وضعیت اشتراک";
+"premium_remaining" = "زمان باقی‌مانده";
+"premium_no_subscription" = "اشتراک فعال ندارید";
+"premium_locked_countries" = "کشورهای قفل‌شده";
+"premium_buy" = "خرید اشتراک";
+"premium_open_bot" = "باز کردن ربات";
+"premium_code_ok" = "اشتراک با موفقیت فعال شد";
+"premium_code_bad" = "کد معتبر نیست یا قبلاً استفاده شده است";
+"premium_days_left" = "%d روز مانده";
+
+"locations_title" = "تمام مکان‌ها";
+"locations_gift_code" = "کد هدیه";
+"locations_enter_gift" = "کد هدیه را وارد کنید";
+"locations_apply" = "اعمال کد";
+"locations_gift_ok" = "هدیه فعال شد";
+"locations_gift_bad" = "کد هدیه معتبر نیست";
+
+"profile_title" = "من";
+"profile_sign_in" = "ورود";
+"profile_sign_up" = "ثبت‌نام";
+"profile_sign_out" = "خروج از حساب";
+"profile_email" = "ایمیل";
+"profile_subscription" = "اشتراک";
+"profile_support" = "پشتیبانی آنلاین";
+"profile_bot" = "ربات";
+"profile_channel" = "کانال";
+"profile_guide" = "راهنما";
+"profile_about" = "درباره";
+"profile_version" = "نسخه";
+"profile_made_by" = "ساخته‌شده توسط AREF KH";
+
+"auth_email" = "ایمیل";
+"auth_password" = "رمز عبور";
+"auth_password_confirm" = "تکرار رمز عبور";
+"auth_login" = "ورود";
+"auth_signup" = "ثبت‌نام";
+"auth_forgot" = "رمز عبور را فراموش کردم";
+"auth_send_link" = "ارسال لینک بازیابی";
+"auth_error" = "خطا";
+"auth_password_short" = "رمز عبور باید حداقل ۶ کاراکتر باشد";
+"auth_password_mismatch" = "رمزهای عبور یکسان نیستند";
+"auth_email_registered" = "این ایمیل قبلاً ثبت شده است؛ وارد شوید";
+"auth_ip_registered" = "با این اینترنت قبلاً یک حساب ساخته شده است؛ هر اینترنت فقط یک حساب";
+"auth_invalid" = "ایمیل یا رمز عبور اشتباه است";
+"auth_network" = "خطای شبکه؛ دوباره تلاش کنید";
+"auth_link_sent" = "لینک بازیابی ارسال شد؛ صندوق ایمیل را بررسی کنید";
+
+"startup_updating" = "در حال بروزرسانی سرور…";
+"startup_no_server" = "سروری پیدا نشد — دوباره تلاش کنید";
+"startup_retry" = "تلاش دوباره";
+"startup_msg_security" = "در حال بررسی امنیت اتصال…";
+"startup_msg_tunnel" = "در حال آماده‌سازی تونل امن…";
+"startup_msg_fast" = "بررسی سرورهای پرسرعت…";
+"startup_msg_route" = "بهینه‌سازی مسیر ارتباطی…";
+"startup_msg_status" = "در حال بررسی وضعیت سرورها…";
+"startup_msg_update" = "به‌روزرسانی اطلاعات سرور…";
+"startup_msg_stable" = "افزایش پایداری ارتباط…";
+"startup_msg_premium" = "آماده‌سازی سرویس‌های ویژه…";
+"startup_msg_quality" = "بررسی کیفیت شبکه…";
+"startup_msg_power" = "قدرت بیشتر، سرعت بالاتر…";
+"startup_msg_secure" = "اتصال امن در حال آماده‌سازی…";
+"startup_msg_almost" = "تقریباً آماده‌ایم…";
+"startup_msg_launch" = "TAHA VPN 5G در حال راه‌اندازی…";
+
+"ad_close" = "بستن";
+"ad_open_link" = "مشاهده";
+"ad_countdown" = "%d ثانیه تا شروع اتصال";
+"ad_watch_full" = "برای شروع اتصال، تبلیغ را کامل ببینید";
+
+"common_cancel" = "لغو";
+"common_retry" = "تلاش دوباره";
+"common_ok" = "باشه";
+"common_loading" = "در حال بارگذاری…";
+"error_generic" = "خطایی رخ داد؛ دوباره تلاش کنید";

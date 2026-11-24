@@ -1,0 +1,79 @@
+name: Build iOS unsigned IPA
+
+# Builds TAHA VPN 5G for iOS on a macOS runner and publishes an UNSIGNED
+# .ipa (AltStore sideload artifact). The workflow is triggered manually or
+# on version tags only — one CI run per release, no polling.
+# The .ipa is UNSIGNED: it must be re-signed on install (AltStore / Xcode
+# with the user's own Apple ID). It is never signed here and no signing
+# identity, certificate, or team id lives in this repo.
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+          # go.sum در اولین اجرا روی رانر ساخته می‌شود (روی این سرور Go
+          # نیست)؛ پس کش وابستگی‌ها فعلاً فعال نیست.
+
+      - name: Build Libbox XCFramework (sing-box core)
+        run: ./core/scripts/build-libbox.sh
+        working-directory: .
+        env:
+          GOTOOLCHAIN: local
+
+      - name: Verify libbox API surface
+        run: ./core/scripts/verify-libbox-api.sh
+
+      # بدون فایل scheme در مخزن، با -target ساخته می‌شود نه -scheme.
+      - name: Build app (unsigned, Release)
+        run: |
+          xcodebuild -project vpn5g-ios.xcodeproj \
+            -target VPN5G \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project vpn5g-ios.xcodeproj \
+            -target VPN5GTunnel \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Package unsigned IPA
+        run: |
+          APP_PATH=$(find build/DerivedData/Build/Products/Release-iphoneos -maxdepth 1 -name "VPN5G.app" | head -n 1)
+          test -n "$APP_PATH" || { echo "VPN5G.app not found"; exit 1; }
+          mkdir -p build/Payload
+          cp -R "$APP_PATH" build/Payload/
+          cd build && zip -r -y "TAHA-VPN-5G_${GITHUB_REF_NAME:-dev}_unsigned.ipa" Payload
+          ls -la *.ipa
+
+      - name: Upload unsigned IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: TAHA-VPN-5G-ios-unsigned
+          path: build/*.ipa
+          if-no-files-found: error
+          retention-days: 30

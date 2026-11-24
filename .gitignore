@@ -1,0 +1,21 @@
+# Build products
+build/
+DerivedData/
+*.xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# libbox XCFramework (built by CI from core/ — never commit the binary)
+core/Libbox.xcframework/
+VPN5G/Frameworks/Libbox.xcframework
+
+# macOS
+.DS_Store
+
+# Signing (never commit certificates, profiles, or team ids)
+*.p12
+*.mobileprovision
+*.provisionprofile
+CodeSigning.xcconfig
+
+# Go module cache / gomobile work dir
+core/gomobile-work/

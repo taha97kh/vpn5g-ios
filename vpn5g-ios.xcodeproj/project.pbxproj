@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		7CAC448ABB9ECF8EDFE4CC99 /* VPN5GApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203F231022D7E1958DF7560 /* VPN5GApp.swift */; };
+		16E7712BC080E290642734A4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA59B211085FDDD9236C7A /* AppConstants.swift */; };
+		F93A483CC303F16B5A583742 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B160305A02315460DAF9C65 /* SupabaseConfig.swift */; };
+		D2F92502EACF8877FCA679C8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1978BE9558FD15DBB8EF0FD /* AppConfig.swift */; };
+		15C8A74C80C14AA583B543FD /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A4A4A722B92366BD694EB /* ServerConfig.swift */; };
+		292E94C0E64BD3D8917884AB /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6155E22B7ADFE591051BB506 /* Subscription.swift */; };
+		97A4331C8FB8F8B05286F8AF /* AdConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA560C32553481A91447029 /* AdConfig.swift */; };
+		E292CA96DCEEF2B830055193 /* SupabaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1286404B889BAEE33324FF /* SupabaseAuth.swift */; };
+		972073532C5BAD26BE1F6EAE /* ConfigSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A6FB739B037227DA74EDC /* ConfigSync.swift */; };
+		8EF60133A88EC3CA500BA472 /* SingBoxConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C6638A83AA7974A8F532B9 /* SingBoxConfigBuilder.swift */; };
+		8C492FB46C11CB8CF2079F2D /* TunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF7A9B8C34C97E059D64C8 /* TunnelManager.swift */; };
+		C946C6C83B6AAA9A0062BB5D /* SubscriptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B25D49A17CE3F47F966016F /* SubscriptionStore.swift */; };
+		5C0AC8FD5238B74ED558441D /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4016FDF33B8485B45A0CB8 /* AdManager.swift */; };
+		2BF390A0B01D5FF3168ABBC2 /* SpeedMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F8902018EE85E18055E97 /* SpeedMonitor.swift */; };
+		D41FDC69E39F1B0BB8CCC527 /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE77DB1E86A47E55E6E082 /* StartupView.swift */; };
+		66A7103AF576E730881A4D9F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293CD3808ADB0189650074AA /* HomeView.swift */; };
+		540C2FD835D5C426A9CB5314 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA41947A727BB285A32C0A /* PremiumView.swift */; };
+		4AF0026DB0CC070E66F110D7 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E619D1FA26FB6F2A154FDB /* LocationsView.swift */; };
+		8F8F13238072A430406E45C6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45054EA3A58385235E6A61FB /* ProfileView.swift */; };
+		3ABC70E01B375A150D8FF90D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC0592F69DF0B7FDEBB93F /* AuthView.swift */; };
+		238C3740DC8220225EDB5E82 /* AdInterstitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5A9B7D5DF0B18DA46FB8AA /* AdInterstitialView.swift */; };
+		8671D5EC8E56FDAD96E01EE8 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280DC73A99EBF4143A3B967 /* Components.swift */; };
+		A46444AAAE3E4A3DD8E61D82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F67AF8F2265900C037BF23E0 /* Assets.xcassets */; };
+		44FFAC3BBEC9346C6F6AB7DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4EBB4EF04AC5A52597A5152 /* Localizable.strings */; };
+		274B7D348F16D36C0BBD405B /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F145DACD910215E7137A39 /* PacketTunnelProvider.swift */; };
+		7A562A9DBA9A1AFE75101518 /* LibboxPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABEF2C134F652B72851AC1 /* LibboxPlatformInterface.swift */; };
+		B52A467E1D57F89633F206D9 /* SingBoxTrafficPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109353ECB351AA5AE3746A /* SingBoxTrafficPoller.swift */; };
+		ACE7EFD12B02CA8269B12DA7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55023C050E77AF9D158E0DDD /* NetworkExtension.framework */; };
+		994CBA380161D4A61D67F218 /* Libbox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DAB373F845DCD0E6301AE5 /* Libbox.xcframework */; };
+		2203F231022D7E1958DF7560 /* VPN5GApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/VPN5GApp.swift; sourceTree = "<group>"; };
+		4DBA59B211085FDDD9236C7A /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Config/AppConstants.swift; sourceTree = "<group>"; };
+		3B160305A02315460DAF9C65 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Config/SupabaseConfig.swift; sourceTree = "<group>"; };
+		F1978BE9558FD15DBB8EF0FD /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Models/AppConfig.swift; sourceTree = "<group>"; };
+		484A4A4A722B92366BD694EB /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Models/ServerConfig.swift; sourceTree = "<group>"; };
+		6155E22B7ADFE591051BB506 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Models/Subscription.swift; sourceTree = "<group>"; };
+		ADA560C32553481A91447029 /* AdConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Models/AdConfig.swift; sourceTree = "<group>"; };
+		AC1286404B889BAEE33324FF /* SupabaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/SupabaseAuth.swift; sourceTree = "<group>"; };
+		AE6A6FB739B037227DA74EDC /* ConfigSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/ConfigSync.swift; sourceTree = "<group>"; };
+		11C6638A83AA7974A8F532B9 /* SingBoxConfigBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/SingBoxConfigBuilder.swift; sourceTree = "<group>"; };
+		8AFF7A9B8C34C97E059D64C8 /* TunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/TunnelManager.swift; sourceTree = "<group>"; };
+		5B25D49A17CE3F47F966016F /* SubscriptionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/SubscriptionStore.swift; sourceTree = "<group>"; };
+		7A4016FDF33B8485B45A0CB8 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/AdManager.swift; sourceTree = "<group>"; };
+		119F8902018EE85E18055E97 /* SpeedMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Services/SpeedMonitor.swift; sourceTree = "<group>"; };
+		37BE77DB1E86A47E55E6E082 /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/StartupView.swift; sourceTree = "<group>"; };
+		293CD3808ADB0189650074AA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/HomeView.swift; sourceTree = "<group>"; };
+		C6EA41947A727BB285A32C0A /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/PremiumView.swift; sourceTree = "<group>"; };
+		67E619D1FA26FB6F2A154FDB /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/LocationsView.swift; sourceTree = "<group>"; };
+		45054EA3A58385235E6A61FB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/ProfileView.swift; sourceTree = "<group>"; };
+		7EDC0592F69DF0B7FDEBB93F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/AuthView.swift; sourceTree = "<group>"; };
+		FF5A9B7D5DF0B18DA46FB8AA /* AdInterstitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/AdInterstitialView.swift; sourceTree = "<group>"; };
+		0280DC73A99EBF4143A3B967 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5G/Views/Components.swift; sourceTree = "<group>"; };
+		F67AF8F2265900C037BF23E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = VPN5G/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		A4EBB4EF04AC5A52597A5152 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = VPN5G/Resources/Localizable.strings; sourceTree = "<group>"; };
+		A839ADCE26210478B9CC2AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = VPN5G/Info.plist; sourceTree = "<group>"; };
+		14E5314BE05FE99C1126D16E /* VPN5G.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPN5G/VPN5G.entitlements; sourceTree = "<group>"; };
+		91F145DACD910215E7137A39 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5GTunnel/PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		8BABEF2C134F652B72851AC1 /* LibboxPlatformInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5GTunnel/LibboxPlatformInterface.swift; sourceTree = "<group>"; };
+		BD109353ECB351AA5AE3746A /* SingBoxTrafficPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPN5GTunnel/SingBoxTrafficPoller.swift; sourceTree = "<group>"; };
+		167484EC34A2C45C0B6E12B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = VPN5GTunnel/Info.plist; sourceTree = "<group>"; };
+		6CF504CD847CA36FA2A09EA0 /* VPN5GTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPN5GTunnel/VPN5GTunnel.entitlements; sourceTree = "<group>"; };
+		55023C050E77AF9D158E0DDD /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		94DAB373F845DCD0E6301AE5 /* Libbox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = core/Libbox.xcframework; sourceTree = "<group>"; };
+		B6CDB6E5D160E013280D3C68 /* VPN5G.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VPN5G.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF45E6D374154763C3F59986 /* VPN5GTunnel.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = VPN5GTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D3446C63F9EEB9172CAE05B /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+				ACE7EFD12B02CA8269B12DA7 /* NetworkExtension.framework in Frameworks */,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		D4D94948E667A468DBFE4552 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (
+				ACE7EFD12B02CA8269B12DA7 /* NetworkExtension.framework in Frameworks */,
+				994CBA380161D4A61D67F218 /* Libbox.xcframework in Frameworks */,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		53165E86F588784C4C171B0B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				4DBA59B211085FDDD9236C7A /* AppConstants.swift */,
+				3B160305A02315460DAF9C65 /* SupabaseConfig.swift */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		3B17D39D5B85E9D40221A490 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F1978BE9558FD15DBB8EF0FD /* AppConfig.swift */,
+				484A4A4A722B92366BD694EB /* ServerConfig.swift */,
+				6155E22B7ADFE591051BB506 /* Subscription.swift */,
+				ADA560C32553481A91447029 /* AdConfig.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		317EE242CDC60A43F34FACF0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AC1286404B889BAEE33324FF /* SupabaseAuth.swift */,
+				AE6A6FB739B037227DA74EDC /* ConfigSync.swift */,
+				11C6638A83AA7974A8F532B9 /* SingBoxConfigBuilder.swift */,
+				8AFF7A9B8C34C97E059D64C8 /* TunnelManager.swift */,
+				5B25D49A17CE3F47F966016F /* SubscriptionStore.swift */,
+				7A4016FDF33B8485B45A0CB8 /* AdManager.swift */,
+				119F8902018EE85E18055E97 /* SpeedMonitor.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		D6738AE182D21615B01829FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				37BE77DB1E86A47E55E6E082 /* StartupView.swift */,
+				293CD3808ADB0189650074AA /* HomeView.swift */,
+				C6EA41947A727BB285A32C0A /* PremiumView.swift */,
+				67E619D1FA26FB6F2A154FDB /* LocationsView.swift */,
+				45054EA3A58385235E6A61FB /* ProfileView.swift */,
+				7EDC0592F69DF0B7FDEBB93F /* AuthView.swift */,
+				FF5A9B7D5DF0B18DA46FB8AA /* AdInterstitialView.swift */,
+				0280DC73A99EBF4143A3B967 /* Components.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		99F98A0D023E26C2B20D7B5A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F67AF8F2265900C037BF23E0 /* Assets.xcassets */,
+				A4EBB4EF04AC5A52597A5152 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC07C51EFA0D49E2F08536C8 /* VPN5G */ = {
+			isa = PBXGroup;
+			children = (
+				53165E86F588784C4C171B0B /* Config */,
+				3B17D39D5B85E9D40221A490 /* Models */,
+				317EE242CDC60A43F34FACF0 /* Services */,
+				D6738AE182D21615B01829FA /* Views */,
+				99F98A0D023E26C2B20D7B5A /* Resources */,
+				2203F231022D7E1958DF7560 /* VPN5GApp.swift */,
+				A839ADCE26210478B9CC2AD3 /* Info.plist */,
+				14E5314BE05FE99C1126D16E /* VPN5G.entitlements */,
+			);
+			path = VPN5G;
+			sourceTree = "<group>";
+		};
+		478FFD2C4B2AB709DCE3C598 /* VPN5GTunnel */ = {
+			isa = PBXGroup;
+			children = (
+				91F145DACD910215E7137A39 /* PacketTunnelProvider.swift */,
+				8BABEF2C134F652B72851AC1 /* LibboxPlatformInterface.swift */,
+				BD109353ECB351AA5AE3746A /* SingBoxTrafficPoller.swift */,
+				167484EC34A2C45C0B6E12B9 /* Info.plist */,
+				6CF504CD847CA36FA2A09EA0 /* VPN5GTunnel.entitlements */,
+			);
+			name = VPN5GTunnel;
+			sourceTree = "<group>";
+		};
+		ED2F3B048716C9DC7573911C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55023C050E77AF9D158E0DDD /* NetworkExtension.framework */,
+				94DAB373F845DCD0E6301AE5 /* Libbox.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00C45FD35CB0F9C5F764F070 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6CDB6E5D160E013280D3C68 /* VPN5G.app */,
+				CF45E6D374154763C3F59986 /* VPN5GTunnel.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF891E785808226D241F246E = {
+			isa = PBXGroup;
+			children = (
+				AC07C51EFA0D49E2F08536C8 /* VPN5G */,
+				478FFD2C4B2AB709DCE3C598 /* VPN5GTunnel */,
+				ED2F3B048716C9DC7573911C /* Frameworks */,
+				00C45FD35CB0F9C5F764F070 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		29C7B681C8D62CBAC94D51C0 /* VPN5G */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32995943DE67267A65D32CA9 /* Build configuration list for PBXNativeTarget "VPN5G" */;
+			buildPhases = (
+				507A349611DBB42F9CF9069B /* Sources */,
+				2D3446C63F9EEB9172CAE05B /* Frameworks */,
+				4C29BBC16528FEA9E858725B /* Resources */,
+				C9046F1009D9B6B8A1790729 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D207FD44C6B3F225489E7BE8 /* PBXTargetDependency */,
+			);
+			name = VPN5G;
+			productName = VPN5G;
+			productReference = B6CDB6E5D160E013280D3C68 /* VPN5G.app */;
+			productType = "com.apple.product-type.application";
+		};
+		94A62CCA0949C1267AA59055 /* VPN5GTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1407C80F05E442515D567FDD /* Build configuration list for PBXNativeTarget "VPN5GTunnel" */;
+			buildPhases = (
+				9F21CC38A31146FE271217E8 /* Sources */,
+				D4D94948E667A468DBFE4552 /* Frameworks */,
+				D500BCEF80A8EAEABFCF4EE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VPN5GTunnel;
+			productName = VPN5GTunnel;
+			productReference = CF45E6D374154763C3F59986 /* VPN5GTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D207FD44C6B3F225489E7BE8 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 94A62CCA0949C1267AA59055 /* VPN5GTunnel */; targetProxy = C7A06FBB5E4C412C7860E03E /* PBXContainerItemProxy */; };
+		C7A06FBB5E4C412C7860E03E /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 1A9A9D15BB59F90A047EB2C4 /* Project object */; proxyType = 1; remoteGlobalIDString = 94A62CCA0949C1267AA59055; remoteInfo = VPN5GTunnel; };
+		1A9A9D15BB59F90A047EB2C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					29C7B681C8D62CBAC94D51C0 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					94A62CCA0949C1267AA59055 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 12D04D787E90C9B967248BFD /* Build configuration list for PBXProject "vpn5g-ios" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = fa;
+			isTemplate = 0;
+			mainGroup = DF891E785808226D241F246E;
+			productRefGroup = 00C45FD35CB0F9C5F764F070 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29C7B681C8D62CBAC94D51C0 /* VPN5G */,
+				94A62CCA0949C1267AA59055 /* VPN5GTunnel */,
+			);
+		};
+		507A349611DBB42F9CF9069B /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+				7CAC448ABB9ECF8EDFE4CC99 /* VPN5GApp.swift in Sources */,
+				16E7712BC080E290642734A4 /* AppConstants.swift in Sources */,
+				F93A483CC303F16B5A583742 /* SupabaseConfig.swift in Sources */,
+				D2F92502EACF8877FCA679C8 /* AppConfig.swift in Sources */,
+				15C8A74C80C14AA583B543FD /* ServerConfig.swift in Sources */,
+				292E94C0E64BD3D8917884AB /* Subscription.swift in Sources */,
+				97A4331C8FB8F8B05286F8AF /* AdConfig.swift in Sources */,
+				E292CA96DCEEF2B830055193 /* SupabaseAuth.swift in Sources */,
+				972073532C5BAD26BE1F6EAE /* ConfigSync.swift in Sources */,
+				8EF60133A88EC3CA500BA472 /* SingBoxConfigBuilder.swift in Sources */,
+				8C492FB46C11CB8CF2079F2D /* TunnelManager.swift in Sources */,
+				C946C6C83B6AAA9A0062BB5D /* SubscriptionStore.swift in Sources */,
+				5C0AC8FD5238B74ED558441D /* AdManager.swift in Sources */,
+				2BF390A0B01D5FF3168ABBC2 /* SpeedMonitor.swift in Sources */,
+				D41FDC69E39F1B0BB8CCC527 /* StartupView.swift in Sources */,
+				66A7103AF576E730881A4D9F /* HomeView.swift in Sources */,
+				540C2FD835D5C426A9CB5314 /* PremiumView.swift in Sources */,
+				4AF0026DB0CC070E66F110D7 /* LocationsView.swift in Sources */,
+				8F8F13238072A430406E45C6 /* ProfileView.swift in Sources */,
+				3ABC70E01B375A150D8FF90D /* AuthView.swift in Sources */,
+				238C3740DC8220225EDB5E82 /* AdInterstitialView.swift in Sources */,
+				8671D5EC8E56FDAD96E01EE8 /* Components.swift in Sources */,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		9F21CC38A31146FE271217E8 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+				274B7D348F16D36C0BBD405B /* PacketTunnelProvider.swift in Sources */,
+				7A562A9DBA9A1AFE75101518 /* LibboxPlatformInterface.swift in Sources */,
+				B52A467E1D57F89633F206D9 /* SingBoxTrafficPoller.swift in Sources */,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		4C29BBC16528FEA9E858725B /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
+				A46444AAAE3E4A3DD8E61D82 /* Assets.xcassets in Resources */,
+				44FFAC3BBEC9346C6F6AB7DF /* Localizable.strings in Resources */,
+			); runOnlyForDeploymentPostprocessing = 0; };
+		D500BCEF80A8EAEABFCF4EE3 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
+			); runOnlyForDeploymentPostprocessing = 0; };
+		C9046F1009D9B6B8A1790729 /* Embed App Extensions */ = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 13; files = (
+				5DC8325E1279958C39B71C99 /* VPN5GTunnel.appex in Embed App Extensions */,
+			); name = "Embed App Extensions"; runOnlyForDeploymentPostprocessing = 0; };
+		5DC8325E1279958C39B71C99 /* VPN5GTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CF45E6D374154763C3F59986 /* VPN5GTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C761B7D49C3C32C5F60E8010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFS = fa;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Debug;
+		};
+		ACCCD85F61979F8ECCA377BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf-with-dsym;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFS = fa;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Release;
+		};
+		A393E557BBA174C592175785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VPN5G/VPN5G.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = VPN5G/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taha97kh.vpn5g;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4848DE5FB3FF960B8E5B63DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VPN5G/VPN5G.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = VPN5G/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taha97kh.vpn5g;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+			};
+			name = Release;
+		};
+		13B6BAF52BAAA80374E6E1EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VPN5GTunnel/VPN5GTunnel.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = VPN5GTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taha97kh.vpn5g.PacketTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		811CDCC7AEE07E42FF7E5449 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VPN5GTunnel/VPN5GTunnel.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = VPN5GTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taha97kh.vpn5g.PacketTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+			};
+			name = Release;
+		};
+		12D04D787E90C9B967248BFD /* Build configuration list for PBXProject "vpn5g-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C761B7D49C3C32C5F60E8010 /* Debug */,
+				ACCCD85F61979F8ECCA377BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32995943DE67267A65D32CA9 /* Build configuration list for PBXProject "vpn5g-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A393E557BBA174C592175785 /* Debug */,
+				4848DE5FB3FF960B8E5B63DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1407C80F05E442515D567FDD /* Build configuration list for PBXProject "vpn5g-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B6BAF52BAAA80374E6E1EA /* Debug */,
+				811CDCC7AEE07E42FF7E5449 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = 1A9A9D15BB59F90A047EB2C4 /* Project object */;
+}
